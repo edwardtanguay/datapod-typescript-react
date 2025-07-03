@@ -7,6 +7,11 @@ This is a simple datapod template for a local site that displays data from a JSO
 - ✔️ tested on Windows
 - ✔️ tested on Ubuntu
 
+## Run examples
+
+- `cd dev/examples`
+- `npx tsx ex010-hello-world.ts`
+
 ## More Datapod templates and sites
 
 https://datapod-tanguay-eu.vercel.app
