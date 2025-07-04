@@ -2,11 +2,6 @@ let data1 = "hello";
 let data2:any = "hello";
 let data3:unknown = "hello";
 
-data1 = "nn";
-data2 = 24;
-data3 = 11;
-
-
-console.log(data1);
-console.log(data2);
-console.log(data3);
+let info1:number = data1
+let info2:number = 24;
+let info3: number = data3;
