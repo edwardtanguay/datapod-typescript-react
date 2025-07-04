@@ -9,8 +9,8 @@ This is a simple datapod template for a local site that displays data from a JSO
 
 ## Run examples
 
-- `cd dev/examples`
-- `npx tsx ex010-hello-world.ts`
+- `npm run ex 010` (this will run dev/examples/ex010-hello-world.ts)
+- `npm run ex 020` (this will run dev/examples/ex020-any-vs-unknown.ts)
 
 ## More Datapod templates and sites
 
