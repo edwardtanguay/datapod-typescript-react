@@ -7,12 +7,17 @@ This is a simple datapod template for a local site that displays data from a JSO
 -   ✔️ tested on Windows
 -   ✔️ tested on Ubuntu
 
-## Run examples
+## Set up frontend
 
--   `npm run ex 010` (this will run dev/examples/ex010-hello-world.ts)
--   `npm run ex 020` (this will run dev/examples/ex020-any-vs-unknown.ts)
+- `npm i`
+- `npm run dev`
 
--   note that each example is wrapped in an IIFE so that the variables are not in the global space, and hence don't conflict with each other
+## npm scripts
+
+- `npm run cp` - create page
+- `npm run pd` - parse data 
+- `npm run gh` - GitHub commit log
+- `npm run backup` - backup site in ../BACKUP folder (as .zip file without node_modules)
 
 ## More Datapod templates and sites
 
