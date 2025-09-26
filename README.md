@@ -1,4 +1,4 @@
-# datapod-for-react-typescript-json
+# datapod-typescript-react
 
 This is a simple datapod template for a local site that displays data from a JSON file, which is created by a TypeScript CLI script that parses a text file.
 
