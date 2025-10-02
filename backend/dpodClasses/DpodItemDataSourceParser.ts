@@ -1,16 +1,19 @@
 import * as qstr from "../../scripts/qtools/qstr";
 import * as qdev from "../../scripts/qtools/qdev";
 import { LineBlock } from "./LineBlock";
+import { DpodSchema } from "./DpodSchema";
 
 export class DpodItemDataSourceParser {
 	protected content = "";
 	protected lines: string[] = [];
 	protected lineBlocks: LineBlock[] = [];
+	private dpodSchemas: DpodSchema[] = [];
 
 	constructor(content: string) {
 		this.content = content;
 		this.createLines();
 		this.createLineBlocks();
+		this.createDpodSchemas();
 	}
 
 	private createLines() {
@@ -69,6 +72,16 @@ export class DpodItemDataSourceParser {
 		}
 	}
 
+	public createDpodSchemas(): void {
+		for (const lineBlock of this.lineBlocks) {
+			const lineBlockKind = lineBlock.getKind();
+			if (lineBlockKind === "schema") {
+				const dpodSchema = new DpodSchema(lineBlock);
+				this.dpodSchemas.push(dpodSchema);
+			}
+		}
+	}
+
 	private debugSeparator(title: string) {
 		const separatorLine =
 			"==== " +
@@ -97,10 +110,23 @@ export class DpodItemDataSourceParser {
 		}
 		return r;
 	}
+
+	private debugShowDpodSchemas() {
+		let r = "";
+		r += qdev.log();
+		r += qdev.log(this.debugSeparator("dpodSchemas"));
+		r += qdev.log();
+		for (const dpodSchema of this.dpodSchemas) {
+			r += dpodSchema.debug();
+		}
+		return r;
+	}
+
 	public debug() {
 		let r = "";
 		// r += this.debugShowLines();
-		r += this.debugShowLineBlocks();
+		// r += this.debugShowLineBlocks();
+		r += this.debugShowDpodSchemas();
 		return r;
 	}
 }

@@ -1,8 +1,9 @@
-import { DataType } from "./DataType"
+import { DataType } from "./DataType";
 import { LineBlock } from "./LineBlock";
 import * as qstr from "../../scripts/qtools/qstr";
-import { Factory } from "./Factory"
-import * as config from '../config';
+import * as qdev from "../../scripts/qtools/qdev";
+import { Factory } from "./Factory";
+import * as config from "../config";
 
 export class DpodSchema {
 	private lineBlock: LineBlock;
@@ -20,21 +21,11 @@ export class DpodSchema {
 		this.createDataTypes();
 	}
 
-	public debug() {
-		console.log(`=== DpodSchema ===`);
-		console.log(`idCode: ${this.idCode}`);
-		console.log(`label: ${this.label}`);
-		console.log(`number of datatypes: ${this.dataTypes.length}`);
-		console.log(``);
-	}
-
 	private getSchemaBlockDataTypeLines() {
 		const lines: string[] = [];
 		for (const dataType of this.dataTypes) {
 			if (
-				!config
-					.systemDataTypeIdCodes()
-					.includes(dataType.getIdCode())
+				!config.systemDataTypeIdCodes().includes(dataType.getIdCode())
 			) {
 				lines.push(dataType.getSchemaLine());
 			}
@@ -65,7 +56,8 @@ ${this.getSchemaBlockDataTypeLines()}
 	private createDataTypes() {
 		const fieldLines = this.lineBlock.getAllLinesButFirst();
 		const dataTypeDpodId = Factory.instantiateDataType("dpodId");
-		const dataTypeDpodWhenCreated = Factory.instantiateDataType("dpodWhenCreated");
+		const dataTypeDpodWhenCreated =
+			Factory.instantiateDataType("dpodWhenCreated");
 		this.dataTypes.push(dataTypeDpodId);
 		this.dataTypes.push(dataTypeDpodWhenCreated);
 		for (const fieldLine of fieldLines) {
@@ -86,5 +78,19 @@ ${this.getSchemaBlockDataTypeLines()}
 
 	public getDataTypes() {
 		return this.dataTypes;
+	}
+
+	public debug() {
+		let r = "";
+		r += qdev.log(`--- DpodSchema ---`);
+		r += qdev.log(`idCode: ${this.idCode}`);
+		r += qdev.log(`label: ${this.label}`);
+		r += qdev.log(`number of datatypes: ${this.dataTypes.length}`);
+		// preface each with index
+		for (let i = 0; i < this.dataTypes.length; i++) {
+			const dataType = this.dataTypes[i];
+			r += qdev.log(`${i+1}: ${dataType.debug()}`);
+		}
+		return r;
 	}
 }

@@ -13,12 +13,6 @@ export class DataType {
 		this.idCode = qstr.forceCamelNotation(this.label);
 		this.dataTypeIdCode = "BASETYPE";
 	}
-	
-	public debug() {
-		console.log(`
-idCode = ${this.idCode} with value = [${this.value}]
-		`.trim());
-	}
 
 	public getDataTypeIdCode() {
 		return this.dataTypeIdCode;
@@ -66,21 +60,32 @@ idCode = ${this.idCode} with value = [${this.value}]
 	}
 
 	private getAbbreviatedDataTypeIdCode() {
-		return this.abbreviatedDataTypeIdCode === '' ? this.dataTypeIdCode : this.abbreviatedDataTypeIdCode;
+		return this.abbreviatedDataTypeIdCode === ""
+			? this.dataTypeIdCode
+			: this.abbreviatedDataTypeIdCode;
 	}
 
 	public getSchemaLine() {
-		const suffix = this.dataTypeIdCode !== 'line' ? `;${this.getAbbreviatedDataTypeIdCode()}` : '';
+		const suffix =
+			this.dataTypeIdCode !== "line"
+				? `;${this.getAbbreviatedDataTypeIdCode()}`
+				: "";
 		return qstr.forceTitleNotation(this.idCode) + suffix;
 	}
-	
+
 	public forceDefaultValue() {
 		if (this.value === undefined) {
 			this.value = this.getDefaultValue();
 		}
 	}
 
-	protected getDefaultValue():any {
-		return '';
+	protected getDefaultValue(): any {
+		return "";
+	}
+
+	public debug() {
+		let r = "";
+		r += `${this.idCode}`;
+		return r;
 	}
 }
