@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // qstr.test.ts
 import { describe, it, expect } from "vitest";
-import { isEmpty } from "./qstr";
+import { isEmpty } from "../qstr";
 
 describe("isEmpty", () => {
 	it("should return true for undefined", () => {
