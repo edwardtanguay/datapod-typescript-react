@@ -425,3 +425,22 @@ export const convertLinesToStringBlock = (lines: string[]) => {
 	}
 	return r;
 };
+
+export const convertFromHtml = (text: string) => {
+	let r = text;
+	r = qstr.replaceAll(r, "\n", "\\n");
+	r = qstr.replaceAll(r, "\t", "\\t");
+	return r;
+};
+
+export const unescapeText = (text: string): string => {
+	let r = text;
+	r = qstr.replaceAll(r, "\\n", "\n");
+	return r;
+};
+
+export const convertVisibleTabsToSpaces = (text: string) => {
+	let r = text;
+	r = qstr.replaceAll(r, "\\t", "\t");
+	return r;
+};
