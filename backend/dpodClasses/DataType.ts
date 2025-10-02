@@ -85,7 +85,7 @@ export class DataType {
 
 	public debug() {
 		let r = "";
-		r += `${this.idCode}`;
+		r += `${this.idCode} (${this.dataTypeIdCode})`;
 		return r;
 	}
 }
