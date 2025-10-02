@@ -1,4 +1,5 @@
 import * as qstr from "../../scripts/qtools/qstr";
+import * as qdev from "../../scripts/qtools/qdev";
 import { LineBlock } from "./LineBlock";
 
 export class DpodItemDataSourceParser {
@@ -88,11 +89,11 @@ export class DpodItemDataSourceParser {
 
 	private debugShowLineBlocks() {
 		let r = "";
-		r += "\n";
-		r += this.debugSeparator("lineBlocks") + "\n";
-		r += "\n";
+		r += qdev.log();
+		r += qdev.log(this.debugSeparator("lineBlocks"));
+		r += qdev.log();
 		for (const lineBlock of this.lineBlocks) {
-			r += lineBlock.debug() + "\n";
+			r += qdev.log(lineBlock.debug());
 		}
 		return r;
 	}

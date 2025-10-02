@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ILineBlockDataItem, ILineBlockKind } from "../types";
+import * as qdev from "../../scripts/qtools/qdev";
 
 export class LineBlock {
 	private lines: string[] = [];
@@ -71,10 +72,10 @@ export class LineBlock {
 
 	public debug() {
 		let r = "";
-		r += this.debugSeparator("LineBlock" + ": " + this.getKind()) + "\n";
+		r += this.debugSeparator("LineBlock" + ": " + this.getKind()) + '\n';
 		for (let i = 0; i < this.lines.length; i++) {
 			const line = this.lines[i];
-			r += (i + 1).toString().padStart(3, "0") + "| " + line + "\n";
+			r += qdev.log((i + 1).toString().padStart(3, "0") + "| " + line);
 		}
 		return r;
 	}
