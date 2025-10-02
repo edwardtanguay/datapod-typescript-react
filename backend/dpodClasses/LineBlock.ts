@@ -70,7 +70,7 @@ export class LineBlock {
 
 	public debug() {
 		let r = "";
-		r += this.debugSeparator("LineBlock") + "\n";
+		r += this.debugSeparator("LineBlock" + ": " + this.getKind()) + "\n";
 		for (let i = 0; i < this.lines.length; i++) {
 			const line = this.lines[i];
 			r += (i + 1).toString().padStart(3, "0") + "| " + line + "\n";
