@@ -16,6 +16,17 @@ export const getLinesFromFile = (filePath: string): string[] => {
 	}
 };
 
+// function that returns the content of a file
+export const getStringBlockFromFile = (filePath: string): string => {
+	try {
+		const fileContent = fs.readFileSync(filePath, "utf-8");
+		return fileContent;
+	} catch (error) {
+		console.error(`Error reading file at ${filePath}:`, error);
+		return "";
+	}
+};
+
 export default getLinesFromFile;
 
 /**
