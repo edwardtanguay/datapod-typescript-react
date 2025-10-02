@@ -1,0 +1,10 @@
+@url = http://localhost:{{$dotenv VITE_API_PORT}}
+@token = {{$dotenv VITE_API_TOKEN}}
+
+### GET API INFO
+GET {{url}}/
+Authorization: Bearer {{token}}
+
+### GET EMPLOYEES
+GET {{url}}/employees
+Authorization: Bearer {{token}}

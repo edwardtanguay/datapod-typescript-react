@@ -4,6 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
+		"api": "nodemon",
 		"dev": "vite --port 3273 --open",
 		"cp": "cd scripts/commands && tsx create-page.ts",
 		"pd": "cd scripts/commands && tsx parse-data.ts",
@@ -15,9 +16,21 @@
 		"pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
 		"ex": "cd dev/examples && bash ex.sh"
 	},
+	"nodemonConfig": {
+		"watch": [
+			"backend"
+		],
+		"ext": "ts, json",
+		"exec": "tsx backend/api/index.ts"
+	},
 	"dependencies": {
+		"axios": "^1.12.2",
+		"cors": "^2.8.5",
 		"dayjs": "^1.11.10",
+		"dotenv": "^17.2.3",
 		"easy-peasy": "^6.0.5",
+		"express": "^5.1.0",
+		"nodemon": "^3.1.10",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^5.3.0",
@@ -26,6 +39,9 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.3",
+		"@types/node": "^24.6.2",
 		"@types/react": "^18.2.15",
 		"@types/react-dom": "^18.2.7",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",

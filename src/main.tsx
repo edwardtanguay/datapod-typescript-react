@@ -1,13 +1,17 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+	createBrowserRouter,
+	Navigate,
+	RouterProvider,
+} from "react-router-dom";
 import "./index.scss";
 import { PageWelcome } from "./pages/PageWelcome.tsx";
-import { PageInfo } from "./pages/PageInfo.tsx";
 import { PageAbout } from "./pages/PageAbout.tsx";
 import { Page404 } from "./pages/Page404.tsx";
-import { StoreProvider } from 'easy-peasy';
-import { store } from './store/store.ts';
+import { StoreProvider } from "easy-peasy";
+import { store } from "./store/store.ts";
+import { PageManageEmployees } from "./pages/PageManageEmployees/PageManageEmployees.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -20,8 +24,8 @@ const router = createBrowserRouter([
 				element: <PageWelcome />,
 			},
 			{
-				path: "info",
-				element: <PageInfo />,
+				path: "manageEmployees",
+				element: <PageManageEmployees />,
 			},
 			{
 				path: "about",

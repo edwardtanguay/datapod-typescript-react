@@ -12,6 +12,13 @@ This is a simple datapod template for a local site that displays data from a JSO
 - `npm i`
 - `npm run dev`
 
+## Create .env file
+
+```
+VITE_API_PORT=3321
+VITE_API_TOKEN=abc123
+```
+
 ## npm scripts
 
 - `npm run cp` - create page

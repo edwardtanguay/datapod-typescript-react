@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	.rowDeleting {
+		@apply !bg-red-200;
+	}
+}
