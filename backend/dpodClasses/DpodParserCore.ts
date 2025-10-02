@@ -1,6 +1,9 @@
+import { LineBlock } from "./LineBlock";
+
 export class DpodParserCore {
 	protected content = "";
 	protected lines: string[] = [];
+	protected lineBlocks: LineBlock[] = [];
 
 	private debugSeparator(title: string) {
 		const separatorLine =
@@ -11,10 +14,21 @@ export class DpodParserCore {
 	}
 
 	protected debugShowLines() {
-		console.log(this.debugSeparator("lines"));
+		let r = "";
+		r += this.debugSeparator("lines") + "\n";
 		for (let i = 0; i < this.lines.length; i++) {
 			const line = this.lines[i];
-			console.log((i + 1).toString().padStart(3, "0") + "| " + line);
+			r += (i + 1).toString().padStart(3, "0") + "| " + line + "\n";
 		}
+		return r;
+	}
+
+	protected debugShowLineBlocks() {
+		let r = "";
+		r += this.debugSeparator("lineBlocks") + "\n";
+		for (const lineBlock of this.lineBlocks) {
+			r += lineBlock.debug() + "\n";
+		}
+		return r;
 	}
 }

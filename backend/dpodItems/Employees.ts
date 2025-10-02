@@ -12,7 +12,7 @@ export class DpodEmployees {
 			"./backend/dpodData/employees.dpodItem.txt"
 		);
 		const dpodParse = new DpodParser(content);
-		dpodParse.debug();
+		console.log(dpodParse.debug());
 	};
 
 	getAsObjectArray = (): Employee[] => {
