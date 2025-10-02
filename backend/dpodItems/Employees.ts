@@ -1,7 +1,7 @@
-import { Employee } from "../../types";
+import { Employee } from "../types";
 
-class DbService {
-	getEmployees = (): Employee[] => {
+export class DpodEmployees {
+	getAsObjectArray = (): Employee[] => {
 		return [
 			{
 				id: 1,
@@ -18,11 +18,9 @@ class DbService {
 			{
 				id: 3,
 				firstName: "Renee",
-				lastName: "Servicemalt",
+				lastName: "Dpodette",
 				age: 35,
 			},
 		];
 	};
 }
-
-export const dbService = new DbService();

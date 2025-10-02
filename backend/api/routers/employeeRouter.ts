@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { authenticateToken } from "../middleware/authMiddleware";
-import { dbService } from "../services/dbService";
+import { DpodEmployees } from "../../dpodItems/Employees";
 
 export const employeeRouter = Router();
 
 employeeRouter.get("/", authenticateToken, async (req, res) => {
 	try {
-		const employees = dbService.getEmployees();
+		const dpodEmployees = new DpodEmployees();
+		const employees = dpodEmployees.getAsObjectArray();
 		res.status(200).json(employees);
 	} catch (error) {
 		res.status(500).json({
