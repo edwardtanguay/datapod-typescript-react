@@ -11,8 +11,8 @@ export class DpodEmployees {
 		const content = qfil.getStringBlockFromFile(
 			"./backend/dpodData/employees.dpodItem.txt"
 		);
-		const dpodParse = new DpodParser(content);
-		console.log(dpodParse.debug());
+		const dpodParser = new DpodParser(content);
+		console.log(dpodParser.debug());
 	};
 
 	getAsObjectArray = (): Employee[] => {
