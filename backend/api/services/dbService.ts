@@ -1,6 +1,6 @@
 import { Employee } from "../../types";
 
-class DbServiceDatapod {
+class DbService {
 	getEmployees = (): Employee[] => {
 		return [
 			{
@@ -25,4 +25,4 @@ class DbServiceDatapod {
 	};
 }
 
-export const dbServiceDatapod = new DbServiceDatapod();
+export const dbService = new DbService();
