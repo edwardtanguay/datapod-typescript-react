@@ -1,4 +1,5 @@
 import * as qstr from "../../scripts/qtools/qstr";
+import { DataTypeDpodId } from "./DataTypeDpodId";
 import { DataTypeLine } from "./DataTypeLine";
 import { DataTypeParagraph } from "./DataTypeParagraph";
 import { DataTypeUnknown } from "./DataTypeUnknown";
@@ -36,6 +37,8 @@ export class Factory {
 		const idCode = parts[0];
 		const dataTypeIdCode = parts[1]; // TODO: make a type
 		switch (dataTypeIdCode) {
+			case "dpodId":
+				return new DataTypeDpodId(idCode);
 			case "line":
 				return new DataTypeLine(idCode);
 			case "wn":
