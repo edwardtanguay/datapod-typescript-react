@@ -62,9 +62,10 @@ export class LineBlock {
 
 	private debugSeparator(title: string) {
 		const separatorLine =
-			"==== " +
+			"-".repeat(4) +
+			" " +
 			title.toUpperCase() +
-			" =============================================";
+			" " + "-".repeat(50)
 		return separatorLine.substring(0, 50);
 	}
 

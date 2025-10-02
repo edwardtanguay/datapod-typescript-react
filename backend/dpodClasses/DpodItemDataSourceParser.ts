@@ -1,10 +1,12 @@
-import { DpodParserCore } from "./DpodParserCore";
 import * as qstr from "../../scripts/qtools/qstr";
 import { LineBlock } from "./LineBlock";
 
-export class DpodParser extends DpodParserCore {
+export class DpodItemDataSourceParser {
+	protected content = "";
+	protected lines: string[] = [];
+	protected lineBlocks: LineBlock[] = [];
+
 	constructor(content: string) {
-		super();
 		this.content = content;
 		this.createLines();
 		this.createLineBlocks();
@@ -66,6 +68,34 @@ export class DpodParser extends DpodParserCore {
 		}
 	}
 
+	private debugSeparator(title: string) {
+		const separatorLine =
+			"==== " +
+			title.toUpperCase() +
+			" =============================================";
+		return separatorLine.substring(0, 50);
+	}
+
+	private debugShowLines() {
+		let r = "";
+		r += this.debugSeparator("lines") + "\n";
+		for (let i = 0; i < this.lines.length; i++) {
+			const line = this.lines[i];
+			r += (i + 1).toString().padStart(3, "0") + "| " + line + "\n";
+		}
+		return r;
+	}
+
+	private debugShowLineBlocks() {
+		let r = "";
+		r += "\n";
+		r += this.debugSeparator("lineBlocks") + "\n";
+		r += "\n";
+		for (const lineBlock of this.lineBlocks) {
+			r += lineBlock.debug() + "\n";
+		}
+		return r;
+	}
 	public debug() {
 		let r = "";
 		// r += this.debugShowLines();

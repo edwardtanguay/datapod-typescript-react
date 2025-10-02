@@ -1,6 +1,6 @@
 import { Employee } from "../types";
 import * as qfil from "../../scripts/qtools/qfil";
-import { DpodParser } from "../dpodClasses/DpodParser";
+import { DpodItemDataSourceParser } from "../dpodClasses/DpodItemDataSourceParser";
 
 export class DpodEmployees {
 	constructor() {
@@ -11,8 +11,8 @@ export class DpodEmployees {
 		const content = qfil.getStringBlockFromFile(
 			"./backend/dpodData/employees.dpodItem.txt"
 		);
-		const dpodParser = new DpodParser(content);
-		console.log(dpodParser.debug());
+		const didsp = new DpodItemDataSourceParser(content);
+		console.log(didsp.debug());
 	};
 
 	getAsObjectArray = (): Employee[] => {
