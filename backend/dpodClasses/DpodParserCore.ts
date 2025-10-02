@@ -14,7 +14,7 @@ export class DpodParserCore {
 		console.log(this.debugSeparator("lines"));
 		for (let i = 0; i < this.lines.length; i++) {
 			const line = this.lines[i];
-			console.log(i + 1 + ": " + line);
+			console.log((i + 1).toString().padStart(3, "0") + "| " + line);
 		}
 	}
 }
