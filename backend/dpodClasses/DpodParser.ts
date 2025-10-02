@@ -1,10 +1,10 @@
+import { DpodParserCore } from "./DpodParserCore";
 import * as qstr from "../../scripts/qtools/qstr";
 
-export class DpodParser {
-	private content = "";
-	private lines: string[] = [];
+export class DpodParser extends DpodParserCore {
 
 	constructor(content: string) {
+		super();
 		this.content = content;
 		this.createLines();
 	}
@@ -13,19 +13,7 @@ export class DpodParser {
 		this.lines = qstr.convertStringBlockToLines(this.content, false);
 	}
 
-	private debugSeparator(title: string) {
-		const separatorLine =
-			"==== " +
-			title.toUpperCase() +
-			" =============================================";
-		return separatorLine.substring(0, 50);
-	}
-
 	public debug() {
-		console.log(this.debugSeparator("lines"));
-		for (let i = 0; i < this.lines.length; i++) {
-			const line = this.lines[i];
-			console.log(i + ": " + line);
-		}
+		this.debugShowLines();
 	}
 }
