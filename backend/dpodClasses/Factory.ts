@@ -1,5 +1,6 @@
 import * as qstr from "../../scripts/qtools/qstr";
 import { DataTypeDpodId } from "./DataTypeDpodId";
+import { DataTypeDpodWhenCreated } from "./DataTypeDpodWhenCreated";
 import { DataTypeLine } from "./DataTypeLine";
 import { DataTypeParagraph } from "./DataTypeParagraph";
 import { DataTypeUnknown } from "./DataTypeUnknown";
@@ -39,6 +40,8 @@ export class Factory {
 		switch (dataTypeIdCode) {
 			case "dpodId":
 				return new DataTypeDpodId(idCode);
+			case "dpodWhenCreated":
+				return new DataTypeDpodWhenCreated(idCode);
 			case "line":
 				return new DataTypeLine(idCode);
 			case "wn":
