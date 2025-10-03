@@ -91,7 +91,7 @@ export class DataType {
 	}
 
 	public forceDefaultValue() {
-		if (this.value === undefined) {
+		if (this.value === "") {
 			this.value = this.getDefaultValue();
 		}
 	}

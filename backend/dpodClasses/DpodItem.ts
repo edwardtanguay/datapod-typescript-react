@@ -26,6 +26,13 @@ export class DpodItem {
 		this.createSchemaCodes();
 		this.defineDpodSchema();
 		this.createDataTypes();
+		this.forceDefaultTypesForAllMissingProperties();
+	}
+
+	private forceDefaultTypesForAllMissingProperties() {
+		for (const dataType of this.dataTypes) {
+			dataType.forceDefaultValue();
+		}
 	}
 
 	private createDataTypes() {
@@ -203,7 +210,9 @@ export class DpodItem {
 		r += qdev.log(`LINES: ${this.lineBlock.getNumberOfLines()}`);
 		r += qdev.log(`DATATYPES: ${this.dataTypes.length}`);
 		r += qdev.log(this.dataTypes.map((dt) => dt.getIdCode()).join(", "));
-		r += qdev.log(this.dataTypes.map((dt) => dt.debugSimpleValue()).join(", "));
+		r += qdev.log(
+			this.dataTypes.map((dt) => dt.debugSimpleValue()).join(", ")
+		);
 		r += qdev.log();
 		return r;
 	}
