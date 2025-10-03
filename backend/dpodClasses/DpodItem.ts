@@ -201,6 +201,7 @@ export class DpodItem {
 		// r += this.lineBlock.debug();
 		r += this.dpodSchema.debug();
 		r += qdev.log(`LINES: ${this.lineBlock.getNumberOfLines()}`);
+		r += qdev.log(`DATATYPES: ${this.dataTypes.length}`);
 		r += qdev.log();
 		return r;
 	}
