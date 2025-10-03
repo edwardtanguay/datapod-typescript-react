@@ -9,7 +9,7 @@ dpodId::2j28wu
 dpodWhenCreated::2025-10-02 06:46:01
 firstName::Ralf
 lastName::Dpodton
-description::[[
+notes::[[
 This is paragraph one.
 
 And paragraph two which is longer. And paragraph two which is longer. And paragraph two which is longer. And paragraph two which is longer. 
@@ -23,7 +23,7 @@ dpodId::jsiJ23
 dpodWhenCreated::2025-10-02 08:46:22
 firstName::Henri
 lastName::Wattingser
-description::description001
+notes::description001
 age::44
 
 ==employee
@@ -31,7 +31,7 @@ dpodId::28dJ23
 dpodWhenCreated::2025-10-02 14:43:01
 firstName::dpodId::Franz
 lastName::Gegerstian
-description::description002
+notes::description002
 age::67
 
 
