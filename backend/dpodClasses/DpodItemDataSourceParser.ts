@@ -2,18 +2,21 @@ import * as qstr from "../../scripts/qtools/qstr";
 import * as qdev from "../../scripts/qtools/qdev";
 import { LineBlock } from "./LineBlock";
 import { DpodSchema } from "./DpodSchema";
+import { DpodItem } from "./DpodItem";
 
 export class DpodItemDataSourceParser {
 	protected content = "";
 	protected lines: string[] = [];
 	protected lineBlocks: LineBlock[] = [];
 	private dpodSchemas: DpodSchema[] = [];
+	private dpodItems: DpodItem[] = [];
 
 	constructor(content: string) {
 		this.content = content;
 		this.createLines();
 		this.createLineBlocks();
 		this.createDpodSchemas();
+		this.createDpodItems();
 	}
 
 	private createLines() {
@@ -82,6 +85,16 @@ export class DpodItemDataSourceParser {
 		}
 	}
 
+	private createDpodItems() {
+		for (const lineBlock of this.lineBlocks) {
+			const lineBlockKind = lineBlock.getKind();
+			if (lineBlockKind === "item") {
+				const dpodItem = new DpodItem(lineBlock);
+				this.dpodItems.push(dpodItem);
+			}
+		}
+	}
+
 	private debugSeparator(title: string) {
 		const separatorLine =
 			"==== " +
@@ -122,11 +135,24 @@ export class DpodItemDataSourceParser {
 		return r;
 	}
 
+	// change to DpodItems
+	private debugShowDpodItems() {
+		let r = "";
+		r += qdev.log();
+		r += qdev.log(this.debugSeparator("dpodItems"));
+		r += qdev.log();
+		for (const dpodItem of this.dpodItems) {
+			r += dpodItem.debug();
+		}
+		return r;
+	}
+
 	public debug() {
 		let r = "";
 		// r += this.debugShowLines();
 		// r += this.debugShowLineBlocks();
-		r += this.debugShowDpodSchemas();
+		// r += this.debugShowDpodSchemas();
+		r += this.debugShowDpodItems();
 		return r;
 	}
 }
