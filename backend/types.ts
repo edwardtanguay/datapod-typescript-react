@@ -10,3 +10,5 @@ export interface ILineBlockDataItem {
 }
 
 export type ILineBlockKind = "schema" | "item" | "UNKNOWN";
+
+export type DpodSyntaxType = "simple" | "verbose";
