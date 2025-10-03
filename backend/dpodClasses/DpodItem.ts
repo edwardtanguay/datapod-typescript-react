@@ -227,4 +227,19 @@ export class DpodItem {
 		r += qdev.log();
 		return r;
 	}
+
+	private getDatapodDataFieldText() {
+		const datapodDataLines: string[] = [];
+		for (const dataType of this.dataTypes) {
+			datapodDataLines.push(dataType.getDatapodDataLine());
+		}
+		return datapodDataLines.join("\n");
+	}
+
+	public getDatapodData() {
+		return `
+==${this.singularSchemaIdCode}
+${this.getDatapodDataFieldText()}
+		`.trim();
+	}
 }

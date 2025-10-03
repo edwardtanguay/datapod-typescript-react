@@ -30,7 +30,11 @@ export class DpodItemDataSourceParser {
 	}
 
 	private getContentForDataSourceFile() {
-		return "the content";
+		let r = "";
+		for (const dpodItem of this.dpodItems) {
+			r += dpodItem.getDatapodData() + "\n";
+		}
+		return r;
 	}
 
 	private createLines() {

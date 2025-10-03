@@ -59,7 +59,7 @@ export class DataType {
 		return `\t"${this.idCode}": "${theValue}"`;
 	}
 
-	public getDatapodDataLine() {
+	public getDatapodDataLine(): string {
 		return `${this.idCode}::${this.getTextValue()}`;
 	}
 
