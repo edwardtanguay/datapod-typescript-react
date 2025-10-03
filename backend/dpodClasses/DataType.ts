@@ -37,6 +37,12 @@ export class DataType {
 		return this.value;
 	}
 
+	public debugSimpleValue() {
+		return this.value.length > 30
+			? this.value.substring(0, 30).replaceAll("\n", "") + "..."
+			: this.value;
+	}
+
 	public getLabel() {
 		return this.label;
 	}
