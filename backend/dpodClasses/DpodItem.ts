@@ -28,6 +28,17 @@ export class DpodItem {
 		this.createDataTypes();
 		this.forceDefaultTypesForAllMissingProperties();
 	}
+	public getDatapodTextFileName() {
+		return `${this.schemaIdCode}.dpodItems.txt`;
+	}
+
+	public getSchemaIdCode() {
+		return this.schemaIdCode;
+	}
+
+	public getDatapodTextPathAndFileName() {
+		return `${config.importDirectory()}/${this.getDatapodTextFileName()}`;
+	}
 
 	private forceDefaultTypesForAllMissingProperties() {
 		for (const dataType of this.dataTypes) {

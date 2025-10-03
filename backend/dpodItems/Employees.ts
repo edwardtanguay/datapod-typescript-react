@@ -9,7 +9,7 @@ export class DpodEmployees {
 
 	parseDpodItemFile = () => {
 		const content = qfil.getStringBlockFromFile(
-			"./backend/dpodData/employees.dpodItem.txt"
+			"./backend/dpodData/employees.dpodItems.txt"
 		);
 		const didsp = new DpodItemDataSourceParser(content);
 		console.log(didsp.debug());

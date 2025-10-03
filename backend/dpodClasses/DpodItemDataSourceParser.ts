@@ -1,5 +1,6 @@
 import * as qstr from "../../scripts/qtools/qstr";
 import * as qdev from "../../scripts/qtools/qdev";
+import * as qfil from "../../scripts/qtools/qfil";
 import { LineBlock } from "./LineBlock";
 import { DpodSchema } from "./DpodSchema";
 import { DpodItem } from "./DpodItem";
@@ -17,6 +18,19 @@ export class DpodItemDataSourceParser {
 		this.createLineBlocks();
 		this.createDpodSchemas();
 		this.createDpodItems();
+		this.overwriteOriginalDpodFile();
+	}
+
+	private overwriteOriginalDpodFile() {
+		const dpodItem = (this.dpodItems as DpodItem[])[0];
+		qfil.writeToFile(
+			dpodItem.getDatapodTextPathAndFileName() + ".mock.txt",
+			this.getContentForDataSourceFile()
+		);
+	}
+
+	private getContentForDataSourceFile() {
+		return "the content";
 	}
 
 	private createLines() {

@@ -17,3 +17,7 @@ export const systemDataTypeIdCodes = (): string[] => {
 export const blankLineMarker = (): string => {
 	return "nn";
 };
+
+export const importDirectory = (): string => {
+	return "backend/dpodData";
+};
