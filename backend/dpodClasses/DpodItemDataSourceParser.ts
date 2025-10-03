@@ -30,9 +30,12 @@ export class DpodItemDataSourceParser {
 	}
 
 	private getContentForDataSourceFile() {
-		return this.dpodItems
+		let r = "";
+		r += "schema info\n\n";
+		r += this.dpodItems
 			.map((dpodItem) => dpodItem.getDatapodData())
 			.join("\n\n");
+		return r;
 	}
 
 	private createLines() {
