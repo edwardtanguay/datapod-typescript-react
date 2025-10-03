@@ -13,6 +13,7 @@ export class DpodEmployees {
 		);
 		const didsp = new DpodItemDataSourceParser(content);
 		console.log(didsp.debug());
+		// console.log("logging finished");
 	};
 
 	getAsObjectArray = (): Employee[] => {

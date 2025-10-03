@@ -85,6 +85,10 @@ export class DpodItemDataSourceParser {
 		}
 	}
 
+	public getDpodSchemas() {
+		return this.dpodSchemas;
+	}
+
 	private createDpodItems() {
 		for (const lineBlock of this.lineBlocks) {
 			const lineBlockKind = lineBlock.getKind();

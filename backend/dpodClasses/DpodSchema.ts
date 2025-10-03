@@ -82,15 +82,16 @@ ${this.getSchemaBlockDataTypeLines()}
 
 	public debug() {
 		let r = "";
-		r += qdev.log(`--- DpodSchema ---`);
-		r += qdev.log(`idCode: ${this.idCode}`);
-		r += qdev.log(`label: ${this.label}`);
-		r += qdev.log(`number of datatypes: ${this.dataTypes.length}`);
+		// r += qdev.log(`--- DpodSchema ---`);
+		// r += qdev.log(`idCode: ${this.idCode}`);
+		// r += qdev.log(`label: ${this.label}`);
+		// r += qdev.log(`number of datatypes: ${this.dataTypes.length}`);
 		// preface each with index
-		for (let i = 0; i < this.dataTypes.length; i++) {
-			const dataType = this.dataTypes[i];
-			r += qdev.log(`${i+1}: ${dataType.debug()}`);
-		}
+		// for (let i = 0; i < this.dataTypes.length; i++) {
+		// 	const dataType = this.dataTypes[i];
+		// 	r += qdev.log(`${i+1}: ${dataType.debug()}`);
+		// }
+		r += qdev.log('SCHEMA: ' + this.dataTypes.map((dt) => dt.debugSimpleInfo()).join(", "));
 		return r;
 	}
 }

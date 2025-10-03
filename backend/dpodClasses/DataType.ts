@@ -18,6 +18,17 @@ export class DataType {
 		return this.dataTypeIdCode;
 	}
 
+	public debugSimpleInfo() {
+		if (
+			this.getIdCode() === "dpodId" ||
+			this.getIdCode() === "dpodWhenCreated"
+		) {
+			return this.idCode;
+		} else {
+			return `${this.idCode} (${this.dataTypeIdCode})`;
+		}
+	}
+
 	public getIdCode() {
 		return this.idCode;
 	}
