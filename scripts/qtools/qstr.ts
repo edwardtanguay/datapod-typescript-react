@@ -444,3 +444,11 @@ export const convertVisibleTabsToSpaces = (text: string) => {
 	r = qstr.replaceAll(r, "\\t", "\t");
 	return r;
 };
+
+// convert quarterReport to quarterReports
+export const forcePlural = (potentialSingularNotation: string) => {
+	if (!potentialSingularNotation.endsWith("s")) {
+		return `${potentialSingularNotation}s`;
+	}
+	return potentialSingularNotation;
+};
