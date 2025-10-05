@@ -164,12 +164,28 @@ export const saveArrayOfObjectsToJsonFile = (
 	}
 };
 
+// if file is the same as the content, don't write
 export const writeToFile = (pathAndFileName: string, content: string): void => {
+	try {
+		const existingContent = fs.readFileSync(pathAndFileName, "utf-8");
+		if (existingContent === content) {
+			qcli.message(
+				`File ${pathAndFileName} is already up-to-date`,
+				"info"
+			);
+			return;
+		}
+	} catch (error) {
+		// if file doesn't exist, it's fine
+	}
 	fs.writeFile(pathAndFileName, content, (err) => {
 		if (err) {
 			console.error("Error writing to file:", err);
 		} else {
-			// TODO: log file write
+			qcli.message(
+				`Successfully saved ${content.length} characters to ${pathAndFileName}`,
+				"success"
+			);
 		}
 	});
 };

@@ -11,8 +11,8 @@ export class DpodEmployees {
 		const content = qfil.getStringBlockFromFile(
 			"./backend/dpodData/employees.dpodItems.txt"
 		);
-		const didsp = new DpodItemDataSourceParser(content);
-		console.log(didsp.debug());
+		new DpodItemDataSourceParser(content);
+		// console.log(didsp.debug());
 		// console.log("logging finished");
 	};
 

@@ -100,7 +100,6 @@ export class DpodItemDataSourceParser {
 			if (lineBlockKind === "schema") {
 				const dpodSchema = new DpodSchema(lineBlock);
 				this.dpodSchema = dpodSchema;
-				console.log(111, this.dpodSchema)
 			}
 		}
 	}
