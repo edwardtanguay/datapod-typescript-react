@@ -9,14 +9,14 @@ export class DpodItemDataSourceParser {
 	protected content = "";
 	protected lines: string[] = [];
 	protected lineBlocks: LineBlock[] = [];
-	private dpodSchemas: DpodSchema[] = [];
+	private dpodSchema: DpodSchema;
 	private dpodItems: DpodItem[] = [];
 
 	constructor(content: string) {
 		this.content = content;
 		this.createLines();
 		this.createLineBlocks();
-		this.createDpodSchemas();
+		this.createDpodSchema();
 		this.createDpodItems();
 		this.overwriteOriginalDpodFile();
 	}
@@ -94,25 +94,26 @@ export class DpodItemDataSourceParser {
 		}
 	}
 
-	public createDpodSchemas(): void {
+	public createDpodSchema(): void {
 		for (const lineBlock of this.lineBlocks) {
 			const lineBlockKind = lineBlock.getKind();
 			if (lineBlockKind === "schema") {
 				const dpodSchema = new DpodSchema(lineBlock);
-				this.dpodSchemas.push(dpodSchema);
+				this.dpodSchema = dpodSchema;
+				console.log(111, this.dpodSchema)
 			}
 		}
 	}
 
-	public getDpodSchemas() {
-		return this.dpodSchemas;
+	public getDpodSchema() {
+		return this.dpodSchema;
 	}
 
 	private createDpodItems() {
 		for (const lineBlock of this.lineBlocks) {
 			const lineBlockKind = lineBlock.getKind();
 			if (lineBlockKind === "item") {
-				const dpodItem = new DpodItem(lineBlock, this);
+				const dpodItem = new DpodItem(lineBlock, this.dpodSchema);
 				this.dpodItems.push(dpodItem);
 			}
 		}
@@ -147,14 +148,12 @@ export class DpodItemDataSourceParser {
 		return r;
 	}
 
-	private debugShowDpodSchemas() {
+	private debugShowDpodSchema() {
 		let r = "";
 		r += qdev.log();
-		r += qdev.log(this.debugSeparator("dpodSchemas"));
+		r += qdev.log(this.debugSeparator("dpodSchema"));
 		r += qdev.log();
-		for (const dpodSchema of this.dpodSchemas) {
-			r += dpodSchema.debug();
-		}
+		r += this.dpodSchema.debug();
 		return r;
 	}
 
@@ -174,7 +173,7 @@ export class DpodItemDataSourceParser {
 		let r = "";
 		// r += this.debugShowLines();
 		// r += this.debugShowLineBlocks();
-		// r += this.debugShowDpodSchemas();
+		// r += this.debugShowDpodSchema();
 		r += this.debugShowDpodItems();
 		return r;
 	}

@@ -1,4 +1,3 @@
-import { DpodItemDataSourceParser } from "./DpodItemDataSourceParser";
 import { LineBlock } from "./LineBlock";
 import * as qstr from "../../scripts/qtools/qstr";
 import * as qdat from "../../scripts/qtools/qdat";
@@ -11,7 +10,6 @@ import { DataType } from "./DataType";
 
 export class DpodItem {
 	private lineBlock: LineBlock;
-	private dpodItemDataSourceParser: DpodItemDataSourceParser;
 	private singularSchemaIdCode: string;
 	private schemaIdCode: string;
 	private dpodSchema!: DpodSchema;
@@ -19,12 +17,11 @@ export class DpodItem {
 
 	constructor(
 		lineBlock: LineBlock,
-		dpodItemDataSourceParser: DpodItemDataSourceParser
+		dpodSchema: DpodSchema
 	) {
 		this.lineBlock = lineBlock;
-		this.dpodItemDataSourceParser = dpodItemDataSourceParser;
+		this.dpodSchema = dpodSchema;
 		this.createSchemaCodes();
-		this.defineDpodSchema();
 		this.createDataTypes();
 		this.forceDefaultTypesForAllMissingProperties();
 	}
@@ -196,13 +193,6 @@ export class DpodItem {
 		}
 	}
 
-	private defineDpodSchema() {
-		for (const dpodSchema of this.dpodItemDataSourceParser.getDpodSchemas()) {
-			if (dpodSchema.getIdCode() === this.schemaIdCode) {
-				this.dpodSchema = dpodSchema;
-			}
-		}
-	}
 	private createSchemaCodes() {
 		this.singularSchemaIdCode = qstr
 			.chopLeft(this.lineBlock.getFirstLine(), "==")
