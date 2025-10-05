@@ -3,6 +3,7 @@ First Name
 Last Name
 Notes;p
 Age;wn
+Company
 
 ==employee
 Henri

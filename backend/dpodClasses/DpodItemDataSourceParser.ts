@@ -31,7 +31,7 @@ export class DpodItemDataSourceParser {
 
 	private getContentForDataSourceFile() {
 		let r = "";
-		r += "schema info\n\n";
+		r += this.dpodSchema.getSchemaBlock() + "\n\n";
 		r += this.dpodItems
 			.map((dpodItem) => dpodItem.getDatapodData())
 			.join("\n\n");
