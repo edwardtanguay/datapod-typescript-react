@@ -24,7 +24,7 @@ export class DpodItemDataSourceParser {
 	private overwriteOriginalDpodFile() {
 		const dpodItem = (this.dpodItems as DpodItem[])[0];
 		qfil.writeToFile(
-			dpodItem.getDatapodTextPathAndFileName() + ".mock.txt",
+			dpodItem.getDatapodTextPathAndFileName() + ".txt",
 			this.getContentForDataSourceFile()
 		);
 	}
