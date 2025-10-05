@@ -51,6 +51,46 @@ export class DpodItem {
 		}
 	}
 
+	private createDataTypesBasedOnSimpleSyntax() {
+		const _dataTypes = this.dpodSchema.getDataTypes();
+		const fieldLines = this.lineBlock.getAllLinesButFirst();
+		if (this.dpodSchema) {
+			let index = -2;
+			for (const _dataType of _dataTypes) {
+				const creationLine =
+					_dataType.getLabel() + ";" + _dataType.getDataTypeIdCode();
+				const __dataType = Factory.instantiateDataType(creationLine);
+				if (index >= 0) {
+					let fieldLine = fieldLines[index];
+					if (fieldLine) {
+						if (fieldLine.endsWith("[[")) {
+							let innerContent = "";
+							let innerFieldLine = "";
+							while (innerFieldLine !== "]]") {
+								innerContent += innerFieldLine + "\n";
+								index++;
+								innerFieldLine = fieldLines[index];
+							}
+							fieldLine = innerContent.trim();
+						}
+						if (fieldLine === config.blankLineMarker()) {
+							__dataType.setValue("");
+						} else {
+							__dataType.setValue(fieldLine);
+						}
+					}
+				} else if (index === -2) {
+					__dataType.setValue(qstr.generateSuuid());
+				} else {
+					__dataType.setValue(qdat.getCurrentIsoDateTime());
+				}
+				this.dataTypes.push(__dataType);
+				index++;
+			}
+		}
+	}
+
+
 	private getDpodIdFromVerboseItem() {
 		const fieldLines = this.lineBlock.getAllLinesButFirst();
 		const firstLine = fieldLines[0]; // "dpodId::7SaDSw"
@@ -133,45 +173,6 @@ export class DpodItem {
 					__dataType.setValue(dpodId);
 				} else {
 					__dataType.setValue(dpodWhenCreated);
-				}
-				this.dataTypes.push(__dataType);
-				index++;
-			}
-		}
-	}
-
-	private createDataTypesBasedOnSimpleSyntax() {
-		const _dataTypes = this.dpodSchema.getDataTypes();
-		const fieldLines = this.lineBlock.getAllLinesButFirst();
-		if (this.dpodSchema) {
-			let index = -2;
-			for (const _dataType of _dataTypes) {
-				const creationLine =
-					_dataType.getLabel() + ";" + _dataType.getDataTypeIdCode();
-				const __dataType = Factory.instantiateDataType(creationLine);
-				if (index >= 0) {
-					let fieldLine = fieldLines[index];
-					if (fieldLine) {
-						if (fieldLine.endsWith("[[")) {
-							let innerContent = "";
-							let innerFieldLine = "";
-							while (innerFieldLine !== "]]") {
-								innerContent += innerFieldLine + "\n";
-								index++;
-								innerFieldLine = fieldLines[index];
-							}
-							fieldLine = innerContent.trim();
-						}
-						if (fieldLine === config.blankLineMarker()) {
-							__dataType.setValue("");
-						} else {
-							__dataType.setValue(fieldLine);
-						}
-					}
-				} else if (index === -2) {
-					__dataType.setValue(qstr.generateSuuid());
-				} else {
-					__dataType.setValue(qdat.getCurrentIsoDateTime());
 				}
 				this.dataTypes.push(__dataType);
 				index++;
