@@ -1,7 +1,7 @@
 import * as qfil from "../../scripts/qtools/qfil";
-import { DpodItemDataSourceParser } from "../dpodClasses/DpodItemDataSourceParser";
+import { DpodItemDataSourceParser } from "./DpodItemDataSourceParser";
 
-export class DpodItems<T> {
+export class DpodItems {
 	private itemTypeIdCode = "";
 	private jsonData: string = "";
 
@@ -18,7 +18,7 @@ export class DpodItems<T> {
 		this.jsonData = didsp.getJsonData();
 	};
 
-	public getAsObjectArray = (): T[] => {
-		return JSON.parse(this.jsonData) as T[];
+	public getAsObjectArray = () => {
+		return JSON.parse(this.jsonData);
 	};
 }

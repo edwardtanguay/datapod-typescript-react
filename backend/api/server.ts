@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { employeeRouter } from "./routers/employeeRouter";
+import { itemRouter } from "./routers/itemRouter";
 import * as config from '../config'
 
 export const app = express();
@@ -26,3 +27,4 @@ app.get("/", (req, res) => {
 });
 
 app.use("/employees", employeeRouter);
+app.use("/items", itemRouter);

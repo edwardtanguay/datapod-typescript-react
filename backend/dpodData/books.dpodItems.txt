@@ -1,0 +1,29 @@
+** Books
+Title
+Description;p
+Number of Pages;wn
+
+==book
+dpodId::UeJZJg
+dpodWhenCreated::2025-10-06 16:06:03
+title::Nexus
+description::A book about the future.
+numberOfPages::0
+
+==book
+dpodId::J8x648
+dpodWhenCreated::2025-10-06 16:06:03
+title::Sapiens
+description::A book about the past.
+numberOfPages::0
+
+==book
+dpodId::vG5wtV
+dpodWhenCreated::2025-10-06 16:54:03
+title::Mastering Vim
+description::[[
+first line
+second line
+third line
+]]
+numberOfPages::288
