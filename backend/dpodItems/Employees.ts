@@ -16,10 +16,9 @@ export class DpodEmployees {
 		);
 		const didsp = new DpodItemDataSourceParser(content);
 		this.jsonData = didsp.getJsonData();
-		console.log(111, this.jsonData);
 	};
 
 	getAsObjectArray = (): Employee[] => {
-		return JSON.parse(this.jsonData);
+		return []; // JSON.parse(this.jsonData);
 	};
 }

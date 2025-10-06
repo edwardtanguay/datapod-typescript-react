@@ -52,11 +52,14 @@ export class DataType {
 	}
 
 	public getJsonDataLine(): string {
-		// return `\t"${this.idCode}": "${this.getTextValue()}"`;
-		let theValue = this.getTextValue();
+		let theValue = this.getJsonTextValue();
 		theValue = qstr.replaceAll(theValue, "\t", "\\t");
 		theValue = qstr.replaceAll(theValue, '"', '\\"');
 		return `\t"${this.idCode}": "${theValue}"`;
+	}
+
+	protected getJsonTextValue(): string {
+		return this.getTextValue();
 	}
 
 	public getDatapodDataLine(): string {
