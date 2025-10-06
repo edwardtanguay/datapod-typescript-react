@@ -16,6 +16,17 @@ export const getLinesFromFile = (filePath: string): string[] => {
 	}
 };
 
+// function that returns the content of a file
+export const getStringBlockFromFile = (filePath: string): string => {
+	try {
+		const fileContent = fs.readFileSync(filePath, "utf-8");
+		return fileContent;
+	} catch (error) {
+		console.error(`Error reading file at ${filePath}:`, error);
+		return "";
+	}
+};
+
 export default getLinesFromFile;
 
 /**
@@ -151,4 +162,30 @@ export const saveArrayOfObjectsToJsonFile = (
 			"error"
 		);
 	}
+};
+
+// if file is the same as the content, don't write
+export const writeToFile = (pathAndFileName: string, content: string): void => {
+	try {
+		const existingContent = fs.readFileSync(pathAndFileName, "utf-8");
+		if (existingContent === content) {
+			qcli.message(
+				`File ${pathAndFileName} is already up-to-date`,
+				"info"
+			);
+			return;
+		}
+	} catch (error) {
+		// if file doesn't exist, it's fine
+	}
+	fs.writeFile(pathAndFileName, content, (err) => {
+		if (err) {
+			console.error("Error writing to file:", err);
+		} else {
+			qcli.message(
+				`Successfully saved ${content.length} characters to ${pathAndFileName}`,
+				"success"
+			);
+		}
+	});
 };

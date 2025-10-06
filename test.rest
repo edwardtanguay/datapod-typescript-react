@@ -8,3 +8,11 @@ Authorization: Bearer {{token}}
 ### GET EMPLOYEES
 GET {{url}}/employees
 Authorization: Bearer {{token}}
+
+### GET BOOKS
+GET {{url}}/items/books
+Authorization: Bearer {{token}}
+
+### GET RECIPES
+GET {{url}}/items/recipes
+Authorization: Bearer {{token}}
