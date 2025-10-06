@@ -9,8 +9,8 @@ This is a simple datapod template for a local site that displays data from a JSO
 
 ## Set up frontend
 
-- `npm i`
-- `npm run dev`
+-   `npm i`
+-   `npm run dev`
 
 ## Create .env file
 
@@ -21,10 +21,48 @@ VITE_API_TOKEN=abc123
 
 ## npm scripts
 
-- `npm run cp` - create page
-- `npm run pd` - parse data 
-- `npm run gh` - GitHub commit log
-- `npm run backup` - backup site in ../BACKUP folder (as .zip file without node_modules)
+-   `npm run cp` - create page
+-   `npm run pd` - parse data
+-   `npm run gh` - GitHub commit log
+-   `npm run backup` - backup site in ../BACKUP folder (as .zip file without node_modules)
+
+## Rules for Datapod source files
+
+-   directory: backend/dpodData
+-   name: e.g. employees.dpodItems.txt, notes.dpodItems.txt
+-   schema at top: e.g.
+
+```
+** Users
+First Name
+Last Name
+Age;wn
+Notes:p
+```
+
+-   items below in same file, e.g.
+
+```
+Jonas
+Schmidt
+30
+React, Vue, Angular
+
+Nikola
+Gruber
+25
+[[
+C#, .NET
+frontend
+backend
+]]
+```
+
+-   system fields (dpodId, dpodWhenCreated) will be added automatically
+-   you can add new fields **after** the schema
+-   space between items will be trimmed to one line
+
+-
 
 ## More Datapod templates and sites
 
