@@ -452,3 +452,18 @@ export const forcePlural = (potentialSingularNotation: string) => {
 	}
 	return potentialSingularNotation;
 };
+
+export const wrapAsJsonContent = (innerJsonContent: string) => {
+	const lines = qstr.convertStringBlockToLines(innerJsonContent);
+	const newLines: string[] = [];
+	newLines.push("[");
+	for (const line of lines) {
+		if (line.startsWith("}") || line.startsWith("{")) {
+			newLines.push(`\t${line}`);
+		} else {
+			newLines.push(`\t\t${line}`);
+		}
+	}
+	newLines.push("]");
+	return qstr.convertLinesToStringBlock(newLines);
+};

@@ -15,10 +15,7 @@ export class DpodItem {
 	private dpodSchema!: DpodSchema;
 	private dataTypes: DataType[] = [];
 
-	constructor(
-		lineBlock: LineBlock,
-		dpodSchema: DpodSchema
-	) {
+	constructor(lineBlock: LineBlock, dpodSchema: DpodSchema) {
 		this.lineBlock = lineBlock;
 		this.dpodSchema = dpodSchema;
 		this.createSchemaCodes();
@@ -49,6 +46,22 @@ export class DpodItem {
 		} else {
 			this.createDataTypesBasedOnVerboseSyntax();
 		}
+	}
+
+	public getJsonData(): string {
+		return `
+{
+${this.getJsonDataFieldText()}
+}
+		`.trim();
+	}
+
+	private getJsonDataFieldText() {
+		const jsonDataLines: string[] = [];
+		for (const dataType of this.dataTypes) {
+			jsonDataLines.push(`${dataType.getJsonDataLine()}`);
+		}
+		return jsonDataLines.join(",\n");
 	}
 
 	private createDataTypesBasedOnSimpleSyntax() {
@@ -89,7 +102,6 @@ export class DpodItem {
 			}
 		}
 	}
-
 
 	private getDpodIdFromVerboseItem() {
 		const fieldLines = this.lineBlock.getAllLinesButFirst();

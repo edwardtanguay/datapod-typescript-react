@@ -51,7 +51,7 @@ export class DataType {
 		return this.value ? this.value : "";
 	}
 
-	public getJsonDataLine() {
+	public getJsonDataLine(): string {
 		// return `\t"${this.idCode}": "${this.getTextValue()}"`;
 		let theValue = this.getTextValue();
 		theValue = qstr.replaceAll(theValue, "\t", "\\t");

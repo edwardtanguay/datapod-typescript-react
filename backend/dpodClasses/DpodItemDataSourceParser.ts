@@ -11,6 +11,7 @@ export class DpodItemDataSourceParser {
 	protected lineBlocks: LineBlock[] = [];
 	private dpodSchema: DpodSchema;
 	private dpodItems: DpodItem[] = [];
+	private jsonData: string = "";
 
 	constructor(content: string) {
 		this.content = content;
@@ -27,6 +28,18 @@ export class DpodItemDataSourceParser {
 			dpodItem.getDatapodTextPathAndFileName(),
 			this.getContentForDataSourceFile()
 		);
+	}
+
+	public getJsonData() {
+		return this.jsonData;
+	}
+
+	private createJsonData() {
+		const jsonDataTexts: string[] = [];
+		for (const dpodItem of this.dpodItems) {
+			jsonDataTexts.push(dpodItem.getJsonData());
+		}
+		this.jsonData = qstr.wrapAsJsonContent(jsonDataTexts.join(",\n"));
 	}
 
 	private getContentForDataSourceFile() {
