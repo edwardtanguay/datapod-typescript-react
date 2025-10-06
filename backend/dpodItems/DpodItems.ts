@@ -1,23 +1,24 @@
-import { Employee } from "../types";
 import * as qfil from "../../scripts/qtools/qfil";
 import { DpodItemDataSourceParser } from "../dpodClasses/DpodItemDataSourceParser";
 
-export class DpodEmployees {
+export class DpodItems<T> {
+	private itemTypeIdCode = "";
 	private jsonData: string = "";
 
-	constructor() {
+	constructor(itemTypeIdCode: string) {
+		this.itemTypeIdCode = itemTypeIdCode;
 		this.parseDpodItemFile();
 	}
 
 	private parseDpodItemFile = () => {
 		const content = qfil.getStringBlockFromFile(
-			"./backend/dpodData/employees.dpodItems.txt"
+			`./backend/dpodData/${this.itemTypeIdCode}.dpodItems.txt`
 		);
 		const didsp = new DpodItemDataSourceParser(content);
 		this.jsonData = didsp.getJsonData();
 	};
 
-	public getAsObjectArray = (): Employee[] => {
-		return JSON.parse(this.jsonData) as Employee[];
+	public getAsObjectArray = (): T[] => {
+		return JSON.parse(this.jsonData) as T[];
 	};
 }
