@@ -39,7 +39,6 @@ export const PageManageEmployees = () => {
 						isEditing: false,
 					})
 				);
-				console.log(333, _uiEmployees);
 				setTimeout(() => {
 					setUiEmployees(_uiEmployees);
 				}, 500);
@@ -63,10 +62,10 @@ export const PageManageEmployees = () => {
 		})();
 	}, []);
 
-	const handleCancelProcess = (id: number) => {
+	const handleCancelProcess = (dpodId: number) => {
 		setUiEmployees(
 			uiEmployees.map((emp) =>
-				emp.item.id === id
+				emp.item.dpodId === dpodId
 					? {
 							...emp,
 							isDeleting: false,
@@ -78,9 +77,9 @@ export const PageManageEmployees = () => {
 		);
 	};
 
-	const handleDeleteEmployee = async (id: number) => {
+	const handleDeleteEmployee = async (dpodId: number) => {
 		try {
-			const response = await fetch(`${backendUrl}/employees/${id}`, {
+			const response = await fetch(`${backendUrl}/employees/${dpodId}`, {
 				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -89,7 +88,9 @@ export const PageManageEmployees = () => {
 			if (!response.ok) {
 				setErrorMessage("Network response was not ok");
 			} else {
-				setUiEmployees(uiEmployees.filter((emp) => emp.item.id !== id));
+				setUiEmployees(
+					uiEmployees.filter((emp) => emp.item.dpodId !== dpodId)
+				);
 			}
 		} catch (error: unknown) {
 			setErrorMessage(
@@ -103,7 +104,7 @@ export const PageManageEmployees = () => {
 	const handleSaveEmployee = async (item: Employee) => {
 		try {
 			const response = await fetch(
-				`${backendUrl}/employees/${item.id}`,
+				`${backendUrl}/employees/${item.dpodId}`,
 				{
 					method: "PUT",
 					headers: {
@@ -120,8 +121,12 @@ export const PageManageEmployees = () => {
 				// set isEditing back to false
 				setUiEmployees(
 					uiEmployees.map((emp) =>
-						emp.item.id === item.id
-							? { ...emp, originalEmployee: { ...item }, isEditing: false }
+						emp.item.dpodId === item.dpodId
+							? {
+									...emp,
+									originalEmployee: { ...item },
+									isEditing: false,
+							  }
 							: emp
 					)
 				);
@@ -160,10 +165,13 @@ export const PageManageEmployees = () => {
 												const item = uiEmployee.item;
 												return (
 													<React.Fragment
-														key={uiEmployee.item.id}
+														key={
+															uiEmployee.item
+																.dpodId
+														}
 													>
 														<tr
-															key={item.id}
+															key={item.dpodId}
 															className={`${
 																uiEmployee.isDeleting
 																	? "rowDeleting"

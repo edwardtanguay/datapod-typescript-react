@@ -38,9 +38,7 @@ export interface Employee extends ItemType {
 	dpodWhenCreated: string;
 	firstName: string;
 	lastName: string;
-	notes: string;
 	age: number;
-	company: string;
 }
 
 export interface UiEmployee extends UiItemType {
