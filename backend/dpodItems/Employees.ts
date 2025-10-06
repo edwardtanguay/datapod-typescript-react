@@ -7,10 +7,9 @@ export class DpodEmployees {
 
 	constructor() {
 		this.parseDpodItemFile();
-
 	}
 
-	parseDpodItemFile = () => {
+	private parseDpodItemFile = () => {
 		const content = qfil.getStringBlockFromFile(
 			"./backend/dpodData/employees.dpodItems.txt"
 		);
@@ -18,7 +17,7 @@ export class DpodEmployees {
 		this.jsonData = didsp.getJsonData();
 	};
 
-	getAsObjectArray = (): Employee[] => {
-		return []; // JSON.parse(this.jsonData);
+	public getAsObjectArray = (): Employee[] => {
+		return JSON.parse(this.jsonData) as Employee[];
 	};
 }
