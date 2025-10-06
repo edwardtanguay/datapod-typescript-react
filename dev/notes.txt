@@ -1,0 +1,7 @@
+- Datapod text data source self repair:
+	- add a field at the end of the schema
+	- add a field at the beginning or end of the schema
+	- add a field to a data item anywhere
+	- add a field above or in between the system fields
+	- spaces are trimmed
+	- remove one or more system fields --> will be regenerated
