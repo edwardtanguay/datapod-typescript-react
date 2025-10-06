@@ -59,7 +59,9 @@ backend
 ```
 
 -   system fields (dpodId, dpodWhenCreated) will be added automatically
--   you can add new fields **after** the schema
+-   you can delete any (non-system) field at any time, it will be deleted from all items
+-   you can rename any (non-system) field at any time, it will be renamed in all items
+-   you can add new fields **after** the schema, they will be added to all items automatically
 -   space between items will be trimmed to one line
 
 -
